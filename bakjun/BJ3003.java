@@ -1,20 +1,35 @@
 package bakjun;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class BJ3003 {
+
     public static void main(String[] args) {
+
+        int [] chess  = {1,1,2,2,2,8};
+
         Scanner sc = new Scanner(System.in);
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0 ; i < 6; i++){
+            int k = sc.nextInt();
+            if (k < 0 || k > 10){
+                break;
+            }
+            list.add(k);
+        }
 
-        try(BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
-            bf.read();
+        List<Integer> resultList = new ArrayList<>();
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        for (int i = 0; i < list.size(); i++){
+            resultList.add(chess[i] - list.get(i));
+        }
+
+        Iterator<Integer> iterator =  resultList.iterator();
+        while (iterator.hasNext()){
+            System.out.print(iterator.next() + " ");
         }
     }
 }

@@ -23,3 +23,5 @@
 hs_err_pid*
 /PracticeCodingTest.iml
 /.idea/
+/out/production/PracticeCodingTest/.gitignore
+/out/production/PracticeCodingTest/README.md
