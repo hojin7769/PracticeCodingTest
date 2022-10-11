@@ -1,6 +1,7 @@
 package org.example;
 
 import org.assertj.core.util.Streams;
+import org.example.calculate.PositiveNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class CalculatorTest {
@@ -21,7 +23,7 @@ public class CalculatorTest {
     @ParameterizedTest
     @MethodSource("formulaAndResult")
     void calculateTest(int operand1, String operator, int operand2,int result) {
-      int calculateResult =  Calculator.calculate(operand1, operator, operand2);
+      int calculateResult =  Calculator.calculate(new PositiveNumber(operand1), operator, new PositiveNumber(operand2));
 
         assertThat(calculateResult).isEqualTo(result);
 
@@ -34,5 +36,14 @@ public class CalculatorTest {
                 arguments(4, "*" ,2 , 8),
                 arguments(4,"/",2,2)
         );
+    }
+
+
+    @Test
+    @DisplayName("나눗셈에서 0을 나누는 경우 IllegalArgument 예외를 발생")
+    void calculateExceptionTest(){
+        assertThatCode(() ->Calculator.calculate(new PositiveNumber(10), "/ ",new PositiveNumber(0)) )
+                .isInstanceOf(IllegalArgumentException.class);
+
     }
 }
