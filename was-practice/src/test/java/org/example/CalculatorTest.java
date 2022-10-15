@@ -34,16 +34,9 @@ public class CalculatorTest {
                 arguments(1,"+",2 , 3),
                 arguments(1,"-",2,-1),
                 arguments(4, "*" ,2 , 8),
-                arguments(4,"/",2,2)
+                arguments(4,"/",0,2)
         );
     }
 
 
-    @Test
-    @DisplayName("나눗셈에서 0을 나누는 경우 IllegalArgument 예외를 발생")
-    void calculateExceptionTest(){
-        assertThatCode(() ->Calculator.calculate(new PositiveNumber(10), "/ ",new PositiveNumber(0)) )
-                .isInstanceOf(IllegalArgumentException.class);
-
-    }
 }
