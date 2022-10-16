@@ -1,5 +1,7 @@
 package org.example;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * 요구사항
  * 평균학점 계산 방법 = (학점수 X 교과목 평점)의 합계 / 수강신청 총학점 수
@@ -13,4 +15,9 @@ public class GradeCalculatorTest {
     //                                              -----> 수강신청 총학점 수          -----> 과목(코스)
 
 
+    @Test
+    void calculateGradeTest() {
+
+
+    }
 }
