@@ -3,25 +3,25 @@ package org.example;
 import java.util.List;
 
 public class GradeCalculator {
+    private final Courses courses;
 
-    private final List<Course> courses;
+
 
     public GradeCalculator(List<Course> courses) {
 
-        this.courses = courses;
+        this.courses = new Courses(courses);
 
     }
 
     public double calculateGrade() {
-        double multipliedCreditAndCourseGrade = 0;
-        for (Course course : courses) {
-            multipliedCreditAndCourseGrade += course.getCredit() * course.getGradeToNumber();
-        }
 
-        int totalCompletedCreadit = courses.stream()
-                .mapToInt(Course::getCredit)
-                .sum();
 
-        return multipliedCreditAndCourseGrade/totalCompletedCreadit;
+        double totalMultipliedCreditAndCourseGrade =  courses.multiplyCreditAndCourseGeade();
+
+
+        int totalCompletedCreadit=  courses.calculateTotalCompletedCredit();
+
+
+        return totalMultipliedCreditAndCourseGrade/totalCompletedCreadit;
     }
 }
